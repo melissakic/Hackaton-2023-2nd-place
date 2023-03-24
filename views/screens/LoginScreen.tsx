@@ -1,13 +1,15 @@
 import {useState} from "react";
-import {ActivityIndicator, Alert, Image, StyleSheet, View} from "react-native";
+import {ActivityIndicator, Alert, Button, Image, StyleSheet, View} from "react-native";
 import InputField from "../components/InputField";
 import AuthButton from "../components/AuthButton";
 import Colors from "../../colors/Colors";
 import LoginImage from "../components/LoginImage";
 import {AuthManager} from "../../managers/AuthManager";
+// @ts-ignore
+import {user} from "../../managers/AuthManager";
 
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
     const [validEmail, setValidEmail] = useState(false);
     const [validPassword, setValidPassword] = useState(false);
     const [email, setEmail] = useState('');
@@ -19,8 +21,8 @@ export default function LoginScreen() {
         let message: string = validEmail ? 'Please input correct password(Minimum 8 characters long)' : 'Please input correct email(x@x.co)'
         if (validEmail && validPassword) {
             AuthManager.logUser(email, password, () => {
-                console.log("prijavljen")
                 setLoading(false)
+                navigation.navigate('Home');
             })
         } else {
             setLoading(false)

@@ -1,14 +1,19 @@
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import {auth} from "../firebaseConfig";
 import {Alert} from "react-native";
+import firebase from "firebase/compat";
 
+
+//@ts-ignore
+let user;
 
 class AuthManager {
 
+    // @ts-ignore
     static addUser(email: string, password: string, completionHandler: () => void) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                let user = userCredential.user;
+                user = userCredential.user;
                 // Maybe radi
                // @ts-ignore
                //  sendEmailVerification(auth.currentUser)
@@ -32,7 +37,7 @@ class AuthManager {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                let user = userCredential.user;
+                user = userCredential.user;
                 // if (user.emailVerified) {
                 //     completionHanlder(user)
                 // } else {
@@ -49,4 +54,4 @@ class AuthManager {
 
 }
 
-export {AuthManager};
+export {AuthManager,user};

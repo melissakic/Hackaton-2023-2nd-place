@@ -21,6 +21,7 @@ const style=StyleSheet.create({
 
     //izgled dugmeta
     btnContainer: {
+        elevation:6,
         backgroundColor: COLORS.primary,
         height:60,
         borderRadius: 30,

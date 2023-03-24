@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
 import {View} from "react-native";
 import CartScreen from '../screens/CartScreen'
+import AddProductScreen from "../screens/AddProductScreen";
 
 
 const Tab= createBottomTabNavigator();
@@ -51,7 +52,7 @@ const BottomNavigator =()=>{
             <Tab.Screen
                 //u sredini onaj
                 name="Search"
-                component={HomeScreen}
+                component={AddProductScreen}
                 options={{
                     tabBarIcon:({color})=>(
                         <View style={{height:60,
@@ -65,7 +66,7 @@ const BottomNavigator =()=>{
                             top: -24, //da izdigne
                             elevation: 5, //sjena
                         }}>
-                            <Icon name="search" color={COLORS.primary} size={28}/>
+                            <Icon name={"add"} color={COLORS.primary} size={28}/>
                         </View>
 
                     )
