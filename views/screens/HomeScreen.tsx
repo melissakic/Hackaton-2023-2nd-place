@@ -5,8 +5,11 @@ import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from
 const HomeScreen= ({}) =>{
 
     return (
-
-        <Text>Home</Text>
+        <View>
+        <Text style={{fontSize:130}}>Home</Text>
+    <Text style={{fontSize:130}}>Home</Text>
+    <Text style={{fontSize:130}}>Home</Text>
+        </View>
     );
 
 

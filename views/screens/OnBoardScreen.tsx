@@ -31,22 +31,17 @@ const OnBoardScreen= ({navigation}) =>{
                         We help you to find best and delicious CLOTHES</Text>
                 </View>
 
-                <View style={style.indicatorContainer}>
 
-                    <View style={style.currentIndicator}/>
-                    <View style={style.indicator}/>
-                    <View style={style.indicator}/>
-
-                </View>
 
                 <FirstButton
-                    onPress={()=>navigation.navigate('Home')}
-                    title="Get Started"
+                    onPress={()=>navigation.navigate('Login')}
+                    title="Login"
                 />
-
+                <FirstButton
+                    onPress={()=>navigation.navigate('Sign')}
+                    title="Create account"
+                />
             </View>
-
-
         </SafeAreaView>
     );
 
@@ -59,7 +54,8 @@ const style = StyleSheet.create({
         flex:1,
         paddingHorizontal:50, //koliko usko ce biti tekst(sirina)
         justifyContent:"space-between",
-        paddingBottom: 50,
+        paddingBottom: 130,
+        marginTop:20
     },
     indicatorContainer:{
         height:40,
@@ -68,22 +64,6 @@ const style = StyleSheet.create({
         flexDirection:"row",  //s lijeva na desno
         alignItems: 'center'
     },
-    //prvi dugmic
-    currentIndicator:{
-        height:12,
-        width:30,
-        borderRadius:10,
-        backgroundColor: COLORS.primary, //boja pozadine
-        marginHorizontal: 5
-
-    },
-    indicator:{
-        height:12,
-        width:15,
-        borderRadius:6,
-        backgroundColor: COLORS.grey, //boja pozadine
-        marginHorizontal: 5
-    }
 });
 
 export default OnBoardScreen;
