@@ -21,7 +21,11 @@ function UserScreen(navigation){
     const [products,setProducts]=useState([])
     const [image,setImage]=useState('')
     const [clickedAmount,setClickedAmount]=useState('')
+    const [editedDesc,setEditedDesc]=useState('')
+    const [editedAmount,setEditedAmount]=useState('')
+
     const test=1;
+
 
    function loadProducts(){
        setProducts([])
@@ -60,11 +64,30 @@ function UserScreen(navigation){
 
     }
 
+    function editDescHandler(description:string){
+       setEditedDesc(description)
+    }
+
+    function editAmountHandler(amount:string){
+       setEditedAmount(amount)
+    }
+
 
 
     const [isModalVisible, setIsModalVisible] = React.useState(false);
 
-    const handleModal = () => setIsModalVisible(() => !isModalVisible);
+    const handleModal = () =>{
+
+        setIsModalVisible(() => !isModalVisible);
+
+    };
+    //@ts-ignore
+    const handleModalClose = (amount:string) =>{
+
+        DataBaseManager.editDatabase(amount,editedAmount,editedDesc)
+        setIsModalVisible(() => !isModalVisible);
+
+    };
 
     return <View>
         <Text style={styles.title}>Sell your products, {auth.currentUser?.email}</Text>
@@ -89,11 +112,11 @@ function UserScreen(navigation){
                     <View style={{marginVertical:10}}>
                         <Button title={"Delete"} onPress={deleteHandler.bind(amount,data.productAmount)}></Button>
                     </View>
-                    <Button title={"Edit"} onPress={handleModal} />
+                    <Button title={"Edit"} onPress={handleModal}/>
                     <Modal isVisible={isModalVisible}  backdropColor={COLORS.white}
                            backdropOpacity= {1} >
                         <View style={{ flex: 1 }}>
-                            <Button title="Hide modal" onPress={handleModal} />
+                            <Button title="Hide modal" onPress={handleModalClose.bind(amount,data.productAmount)}/>
                         </View>
                         <View style={styles.modal}>
                             <Text style={styles.text}>
@@ -101,9 +124,9 @@ function UserScreen(navigation){
                             </Text>
                             <View>
                                 <Text style={styles.opis }>Add product description</Text>
-                                <TextInput placeholder={"Product description"} style={styles.input1} onChangeText={descHandler}></TextInput>
+                                <TextInput placeholder={"Product description"} style={styles.input1} onChangeText={editDescHandler}></TextInput>
                                 <Text style={styles.opis }>Add product price</Text>
-                                <TextInput placeholder={"Product price"} style={styles.input1} onChangeText={amountHandler}></TextInput>
+                                <TextInput placeholder={"Product price"} style={styles.input1} onChangeText={editAmountHandler}></TextInput>
                             </View>
                         </View>
                     </Modal>

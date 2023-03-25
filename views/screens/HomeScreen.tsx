@@ -188,31 +188,14 @@ const HomeScreen= ({navigation})=>{
                 paddingHorizontal:20}}>
                 <View style={style.inputContainer}>
                     <Icon name="search" size={28}/>
-
-
-
                     <TextInput style={{flex:1,fontSize:18}}placeholder={"Search for foood"} onChangeText={searchHandler}></TextInput>
-
                 </View>
-
                 <View style={style.sortBtn}>
                     <Icon name="tune" size={28} color={COLORS.white} />
-
-
                 </View>
-
-
-
             </View>
-
-
-
-
             <View>
                 <ListCategories />
-
-
-
             </View>
 
 
