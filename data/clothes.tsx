@@ -1,5 +1,6 @@
 const clothes = [
     {
+        category:"up",
         id: '1',
         name: 'Ženska košulja',
         ingredients: 'Mixed Pizza',
@@ -7,6 +8,7 @@ const clothes = [
         image: require('../assets/kosulja.png'),
     },
     {
+        category:"up",
         id: '2',
         name: 'Ženska jakna',
         ingredients: 'Cheese Pizza',
@@ -14,6 +16,7 @@ const clothes = [
         image: require('../assets/jakna.png'),
     },
     {
+        category:"up",
         id: '3',
         name: 'Patike',
         ingredients: 'Fried Chicken',
@@ -21,6 +24,7 @@ const clothes = [
         image: require('../assets/patike.png'),
     },
     {
+        category:"up",
         id: '4',
         name: 'Muške hlače',
         ingredients: 'Salmon Meat',
