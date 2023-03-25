@@ -1,22 +1,45 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Alert, Button, Modal, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native"
 import Colors from "../../colors/Colors";
 import COLORS from "../../data/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import ImagePicker from "../../ImagePicker";
+import {DataBaseManager} from "../../managers/DataBaseManager";
 
 function  AddProductScreen({navigation}){
-    return (<View style={styles.centeredView}>
-            <ImagePicker></ImagePicker>
-            <Image source={require("./../../assets/icon.png")} style={styles.image}></Image>
-            <TextInput placeholder={"Product description"} style={styles.input}></TextInput>
-            <TextInput placeholder={"Product price"} style={styles.input}></TextInput>
+    const [imagePath,setImagePath]=useState("./../../assets/icon.png");
+    const [desc,setDesc]=useState('')
+    const [amount,setAmount]=useState('')
+
+    function imageHandler(path:string){
+            setImagePath(path)
+    }
+
+    function descHandler(text:string){
+        setDesc(text)
+    }
+
+
+    function amountHandler(text:string){
+        setAmount(text)
+    }
+
+    return <View style={styles.centeredView}>
+            <ImagePicker onChangeHandler={imageHandler}></ImagePicker>
+            <Image source={{ uri: imagePath, scale: 1 }} style={styles.image}></Image>
+            <TextInput placeholder={"Product description"} style={styles.input} onChangeText={descHandler}></TextInput>
+            <TextInput placeholder={"Product price"} style={styles.input} onChangeText={amountHandler}></TextInput>
             <Pressable
-                style={[styles.button, styles.buttonOpen]}>
+                style={[styles.button, styles.buttonOpen]} onPress={()=>{
+                    if(desc===""||amount===""){
+                        Alert.alert("Error","You must input price and description for product")
+                    }
+                    DataBaseManager.addInDatabase(imagePath,desc,amount);
+                }
+            }>
                 <Text style={styles.textStyle}>Sell clothes</Text>
             </Pressable>
-        </View>
-    );
+        </View>;
 }
 
 const styles = StyleSheet.create({

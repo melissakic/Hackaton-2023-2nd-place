@@ -1,14 +1,13 @@
-import React from "react";
-import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from 'react-native';
+import React, {useContext, useState} from "react";
+import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions, AppState} from 'react-native';
+import productsContex from "../../productsContex";
 
 
-const HomeScreen= ({}) =>{
-
+const HomeScreen= ({navigation}) =>{
+    const [products,setProducts]=useState([{amount:10,desc:"Testni proizvoid"},{amount:20,desc:"Testni proizvoid"}])
+    // @ts-ignore
     return (
         <View>
-        <Text style={{fontSize:130}}>Home</Text>
-    <Text style={{fontSize:130}}>Home</Text>
-    <Text style={{fontSize:130}}>Home</Text>
         </View>
     );
 
