@@ -21,7 +21,7 @@ export default function LoginScreen({navigation}) {
         let message: string = validEmail ? 'Please input correct password(Minimum 8 characters long)' : 'Please input correct email(x@x.co)'
         if (validEmail && validPassword) {
             AuthManager.logUser(email, password, () => {
-                setLoading(false)
+                setLoading(false);
                 navigation.navigate('Home');
             })
         } else {
