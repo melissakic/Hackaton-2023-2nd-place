@@ -13,17 +13,18 @@ const OnBoardScreen= ({navigation}) =>{
                 <Image
                     style={{width:"100%",
                         resizeMode: "contain",
-                        top:-280, //da slika bude u sredini
+                        flex:1,
+                        top:110, //da slika bude u sredini
                     }}
-                    source={require("../../assets/icon.png")}
+                    source={require("../../categories/pozadina.png")}
                 />
 
             </View>
 
             <View style={style.textContainer}>
                 <View >
-                    <Text style={{fontSize:32,fontWeight:"bold", paddingTop:30 ,textAlign:'center'}}>
-                        Shop
+                    <Text style={{fontSize:32,fontWeight:"bold", paddingTop:30 ,textAlign:'center' }}>
+                        {"<MIteam/> shop"}
                     </Text>
                     <Text style={{marginTop:20,
                         fontSize:18,
