@@ -12,11 +12,9 @@ import LoginScreen from "./views/screens/LoginScreen";
 import SignUpScreen from "./views/screens/SignUpSrceen";
 
 
-
-
 const Stack = createStackNavigator();
 export default function App() {
-  return (
+    return (
       <NavigationContainer>
         <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
         <Stack.Navigator screenOptions={{headerShown: false}}>

@@ -1,6 +1,6 @@
 
 
-import React from "react";
+import React, {useState} from "react";
 import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
@@ -58,10 +58,28 @@ const HomeScreen= ({navigation})=>{
             price: '9.55',
             image: require('../../assets/hlace.png'),
         },
+        {
+
+            id: '5',
+            category:"up",
+            name: 'Muške hlače',
+            ingredients: 'Salmon Meat',
+            price: '9.55',
+            image: require('../../assets/hlace.png'),
+        },
+
+        {
+            id: '6',
+            name: 'Shoes',
+            ingredients: 'Salmon Meat',
+            price: '9.55',
+            image: require('../../assets/patike2.png'),
+        },
     ]);
 
     //lista kategorija (slajd lijevo-des tj horizontalno)
     const ListCategories= () => {
+
         return (
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
                         contentContainerStyle={style.listCategoriesCont} >
@@ -127,10 +145,6 @@ const HomeScreen= ({navigation})=>{
                         justifyContent: 'space-between'}}>
 
                         <Text style={{fontSize:18,fontWeight:'bold'}}> ${clothes.price}</Text>
-                        <View style={style.addToCartBtn}>
-                            <Icon name="add" size={20} color={COLORS.white}/>
-
-                        </View>
                     </View>
 
                 </View>
@@ -141,7 +155,11 @@ const HomeScreen= ({navigation})=>{
     };
 
 
+    const [search,setSearch]=useState('')
 
+    function searchHandler(text:string){
+        setSearch(text)
+    }
     return (
         <SafeAreaView style={{flex:1,backgroundColor: COLORS.white}}>
             <View style={style.header}>
@@ -173,10 +191,9 @@ const HomeScreen= ({navigation})=>{
 
 
 
+                    <TextInput style={{flex:1,fontSize:18}}placeholder={"Search for foood"} onChangeText={searchHandler}></TextInput>
+
                 </View>
-
-
-
 
                 <View style={style.sortBtn}>
                     <Icon name="tune" size={28} color={COLORS.white} />
@@ -204,7 +221,7 @@ const HomeScreen= ({navigation})=>{
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
                 data={products} //i importujes food iz data
-                renderItem={({item})=><Card clothes={item}/>} //food je ono sto si gore proslijedila u card
+                renderItem={({item})=>item.name.includes(search)?<Card clothes={item}/>:<></>} //food je ono sto si gore proslijedila u card
             />
 
 
