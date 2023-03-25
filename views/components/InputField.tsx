@@ -1,5 +1,7 @@
 import {Alert, StyleSheet, TextInput, View} from "react-native";
 import COLORS from  "../../data/colors";
+import Colors from "../../colors/Colors";
+
 
 
 function validateEmail(email: string) {
@@ -48,11 +50,11 @@ const styles = StyleSheet.create({
     input_invalid: {
         margin: 10,
         borderRadius: 40,
-        backgroundColor: COLORS.secondary,
+        backgroundColor: "white",
         alignSelf: "stretch",
         marginHorizontal: 20,
         height: 60,
-        borderColor: COLORS.grey,
+        borderColor:Colors.WARNING_RED,
         borderStyle: "solid",
         borderWidth: 3,
         shadowColor: '#171717',

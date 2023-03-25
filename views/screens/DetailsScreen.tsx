@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Text,StyleSheet,Platform,StatusBar,View,Image} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context"; //i za androird i ios
 import COLORS from  "../../data/colors";
@@ -6,13 +6,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from "react-native-gesture-handler";
 import {SecondButton} from "../components/Button";
 import {DataBaseManager} from "../../managers/DataBaseManager";
-import clothes from "../../data/clothes";
 import ReviewForm from "../components/ReviewForm";
 
 const DetailsScreen= ({navigation,route}) =>{
     //ovo cuva detalje iz "proslosti" zapamceno iz homescreena
     const item= route.params;
-
 
 
     return (
@@ -53,7 +51,6 @@ const DetailsScreen= ({navigation,route}) =>{
                         {item.description}
                     </Text>
                     <ReviewForm onReviewSubmit={()=>{}}/>
-
                     <View style={{marginTop: 40, marginBottom: 40}}>
                         <SecondButton  title="Add To Cart" onPress={()=>{
                              DataBaseManager.addInDatabaseCart(item.name,item.price)
