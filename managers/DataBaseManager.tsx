@@ -25,7 +25,25 @@ class DataBaseManager{
         console.log("Document written with ID: ", docRef.id);
 
     }
+    static async deleteAll(){
+        const querySnapshot = await getDocs(collection(db, "cart"));
+        querySnapshot.forEach((doc) => {
+            // @ts-ignore
+                deleteDoc(doc.ref)
+            // doc.data() is never undefined for query doc snapshots
+        });
+    }
 
+    static async addInDatabaseCart( name: string, amount: string) {
+        // @ts-ignore
+        const docRef = await addDoc(collection(db, "cart"), {
+            amount:amount,
+            name:name,
+            author:user.email
+        });
+        console.log("Document written with ID: ", docRef.id);
+    }
+//@ts-ignore
     static async readFromDatabase(adder:()=>void){
         // @ts-ignore
         adder([])
@@ -36,6 +54,26 @@ class DataBaseManager{
             // @ts-ignore
             adder(prevstate=>{
                  return [...prevstate,{ imagePath:doc.data().image,productAmount:doc.data().amount,description: doc.data().description}]
+            })
+        });
+    }
+
+    static async readFromDatabaseCart(adder:()=>void,setPrice:()=>void){
+        // @ts-ignore
+        adder([])
+        const querySnapshot = await getDocs(collection(db, "cart"));
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            // @ts-ignore
+            setPrice(prevstate=>{
+                return Number(prevstate)+Number(doc.data().amount)
+            })
+            // @ts-ignore
+            adder(prevstate=>{
+
+                return [...prevstate,{amount:doc.data().amount,
+                    name:doc.data().name,
+                    author:user.email}]
             })
         });
     }

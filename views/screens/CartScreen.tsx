@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, View, Text, Image} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
 import foods from '../../data/clothes';
 import {FirstButton} from '../components/Button';
+import {DataBaseManager} from "../../managers/DataBaseManager";
 
 const CartScreen=({navigation}) => {
+    const [cart,setCart]=useState([])
+    const [price,setPrice]=useState(0)
+    const [reload,setReaload]=useState(false)
+
+    useEffect(()=>{
+        // @ts-ignore
+        DataBaseManager.readFromDatabaseCart(setCart,setPrice)
+        return ()=>{
+
+        }
+    },[reload])
+
     //lista artikala
     const CartCard=({item})=>{
         return( <View style={style.cartCard}>
@@ -29,15 +42,7 @@ const CartScreen=({navigation}) => {
                     </Text>
                 </View>
 
-                <View //plus za dodavanje
-                    style={{marginRight: 20, alignItems: 'center'}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18}}> 3
-                    </Text>
-                    <View style={style.actionBtn}>
-                        <Icon name="remove" size={25} color={COLORS.white} />
-                        <Icon name="add" size={25} color={COLORS.white} />
-                    </View>
-                </View>
+
             </View>
         );
     };
@@ -54,8 +59,11 @@ const CartScreen=({navigation}) => {
             </View>
             <FlatList showsVerticalScrollIndicator={false}
                       contentContainerStyle={{paddingBottom:80}}
-                      data={foods}
-                      renderItem={({item})=> <CartCard item={item} />}
+                      data={cart}
+                      renderItem={({item})=><View style={{flexDirection:"row",alignSelf:"center"}}>
+                          <Text style={{marginHorizontal:10}}>{item.name}</Text>
+                          <Text>{item.amount}</Text>
+                      </View>}
                       ListFooterComponentStyle={{paddingHorizontal: 20, marginTop: 20}}
                       ListFooterComponent={()=>(
                           <View>
@@ -70,12 +78,30 @@ const CartScreen=({navigation}) => {
                                       Total Price
                                   </Text>
                                   <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-                                      $50
+                                      {`$${price.toFixed(2)}`}
                                   </Text>
                               </View>
-                              <View style={{marginHorizontal: 30}}>
-                                  <FirstButton title="CHECKOUT" />
+                              <View style={{marginVertical: 40}}>
+                                  <FirstButton title="CHECKOUT" onPress={()=>{
+                                    setCart([])
+                                      setPrice(0)
+                                      DataBaseManager.deleteAll()
+                                     if(reload){setReaload(false)}
+                                     else {setReaload(true)}
+                                      navigation.goBack()
+                                  }
+                                  }/>
                               </View>
+                                  <FirstButton title="Back" onPress={()=>{
+                                      setCart([])
+                                      setPrice(0)
+
+                                      if(reload){setReaload(false)}
+                                      else {setReaload(true)}
+                                      navigation.goBack()
+                                  }
+                                  }/>
+
                           </View>
                       )}
             />
