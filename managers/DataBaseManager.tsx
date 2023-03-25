@@ -25,6 +25,14 @@ class DataBaseManager{
         console.log("Document written with ID: ", docRef.id);
 
     }
+    static async deleteAll(){
+        const querySnapshot = await getDocs(collection(db, "cart"));
+        querySnapshot.forEach((doc) => {
+            // @ts-ignore
+                deleteDoc(doc.ref)
+            // doc.data() is never undefined for query doc snapshots
+        });
+    }
 
     static async addInDatabaseCart( name: string, amount: string) {
         // @ts-ignore
@@ -53,7 +61,6 @@ class DataBaseManager{
     static async readFromDatabaseCart(adder:()=>void,setPrice:()=>void){
         // @ts-ignore
         adder([])
-        console.log("asdadsadas")
         const querySnapshot = await getDocs(collection(db, "cart"));
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots

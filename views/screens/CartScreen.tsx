@@ -10,14 +10,15 @@ import {DataBaseManager} from "../../managers/DataBaseManager";
 const CartScreen=({navigation}) => {
     const [cart,setCart]=useState([])
     const [price,setPrice]=useState(0)
+    const [reload,setReaload]=useState(false)
 
     useEffect(()=>{
         // @ts-ignore
         DataBaseManager.readFromDatabaseCart(setCart,setPrice)
         return ()=>{
-            console.log("eeee")
+
         }
-    },[])
+    },[reload])
 
     //lista artikala
     const CartCard=({item})=>{
@@ -59,8 +60,8 @@ const CartScreen=({navigation}) => {
             <FlatList showsVerticalScrollIndicator={false}
                       contentContainerStyle={{paddingBottom:80}}
                       data={cart}
-                      renderItem={({item})=><View style={{flexDirection:"row"}}>
-                          <Text>{item.name}</Text>
+                      renderItem={({item})=><View style={{flexDirection:"row",alignSelf:"center"}}>
+                          <Text style={{marginHorizontal:10}}>{item.name}</Text>
                           <Text>{item.amount}</Text>
                       </View>}
                       ListFooterComponentStyle={{paddingHorizontal: 20, marginTop: 20}}
@@ -80,13 +81,27 @@ const CartScreen=({navigation}) => {
                                       {`$${price.toFixed(2)}`}
                                   </Text>
                               </View>
-                              <View style={{marginHorizontal: 30}}>
+                              <View style={{marginVertical: 40}}>
                                   <FirstButton title="CHECKOUT" onPress={()=>{
-                                  navigation.onBackPress(()=>{
-
-                                  })}
+                                    setCart([])
+                                      setPrice(0)
+                                      DataBaseManager.deleteAll()
+                                     if(reload){setReaload(false)}
+                                     else {setReaload(true)}
+                                      navigation.goBack()
+                                  }
                                   }/>
                               </View>
+                                  <FirstButton title="Back" onPress={()=>{
+                                      setCart([])
+                                      setPrice(0)
+
+                                      if(reload){setReaload(false)}
+                                      else {setReaload(true)}
+                                      navigation.goBack()
+                                  }
+                                  }/>
+
                           </View>
                       )}
             />
