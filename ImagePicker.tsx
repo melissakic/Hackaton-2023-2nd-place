@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
 
 import * as ImagePicker from 'expo-image-picker';
+import LoginScreen from "./views/screens/LoginScreen";
 
 
 function ImagePickerExample(props:{onChangeHandler:(arg0:string)=>void}) {
@@ -23,16 +24,14 @@ function ImagePickerExample(props:{onChangeHandler:(arg0:string)=>void}) {
 
         // Explore the result
         console.log(result);
-
+        // @ts-ignore
+        props.onChangeHandler(result.assets[0].uri)
         if (!result.canceled) {
             // @ts-ignore
-            setPickedImagePath(result.assets[0].uri);
             props.onChangeHandler(result.assets[0].uri);
-            console.log(result.assets[0]);
         }
     }
 
-    const [imageArray,setImageArray] = useState([]);
     return (
         <View style={styles.screen}>
             <View style={styles.buttonContainer}>

@@ -1,12 +1,13 @@
 
-import React, {useState} from "react";
-import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from 'react-native';
+
+import React from "react";
+import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
 import {ScrollView, TextInput, TouchableOpacity,FlatList, TouchableHighlight} from "react-native-gesture-handler";
 import categories from "../../data/categories"
 import clothes from "../../data/clothes"
-import {useCardAnimation} from "@react-navigation/stack";
+import {auth} from "../../firebaseConfig";
 
 
 
@@ -24,6 +25,40 @@ const HomeScreen= ({navigation})=>{
 
 //da bi pratili koja je kategorija selektovana
     const [selectCategoryIndex,setSelectedCategoryIndex]= React.useState(0); //defaultni index=0
+    const [products,setProducts]=React.useState([
+        {
+            category:"up",
+            id: '1',
+            name: 'Ženska košulja',
+            ingredients: 'Mixed Pizza',
+            price: '8.30',
+            image: require('../../assets/kosulja.png'),
+        },
+        {
+            category:"up",
+            id: '2',
+            name: 'Ženska jakna',
+            ingredients: 'Cheese Pizza',
+            price: '7.10',
+            image: require('../../assets/jakna.png'),
+        },
+        {
+            category:"down",
+            id: '3',
+            name: 'Patike',
+            ingredients: 'Fried Chicken',
+            price: '5.10',
+            image: require('../../assets/patike.png'),
+        },
+        {
+            category:"down",
+            id: '4',
+            name: 'Muške hlače',
+            ingredients: 'Salmon Meat',
+            price: '9.55',
+            image: require('../../assets/hlace.png'),
+        },
+    ]);
 
     //lista kategorija (slajd lijevo-des tj horizontalno)
     const ListCategories= () => {
@@ -39,7 +74,6 @@ const HomeScreen= ({navigation})=>{
                     //proslijedis index koji ce izabrati kategoriju (kad kliknes na kategoriju da je selektira)
                     <TouchableOpacity key={index} activeOpacity={0.8}
                                       onPress={()=> setSelectedCategoryIndex(index)}>
-
                         <View
                             style={{
                                 backgroundColor: selectCategoryIndex==index ? COLORS.primary : COLORS.secondary,
@@ -117,17 +151,18 @@ const HomeScreen= ({navigation})=>{
                     <View style={{flexDirection:'row'}}>
                         <Text style={{fontSize:28}}> Hello,</Text>
                         <Text style={{fontSize:28, fontWeight:'bold', marginLeft:10}}>
-                            Ivana
+                            {auth.currentUser?.email}
                         </Text>
                     </View>
                     <Text style={{marginTop: 5, fontSize:22, color:COLORS.grey}}>
                         What do you want today
                     </Text>
                 </View>
-                <Image
-                    source={require("../../assets/user.png")}
-                    style={{height:50,width:50, borderRadius:25}}
-                />
+                <View style={{alignSelf:"center"}}>
+                    <Button title={"Log out"} onPress={()=>{
+                    navigation.goBack()}
+                    }></Button>
+                </View>
             </View>
 
 
@@ -172,7 +207,7 @@ const HomeScreen= ({navigation})=>{
             <FlatList
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
-                data={clothes} //i importujes food iz data
+                data={products} //i importujes food iz data
                 renderItem={({item})=><Card clothes={item}/>} //food je ono sto si gore proslijedila u card
             />
 
