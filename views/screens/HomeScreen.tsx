@@ -1,3 +1,4 @@
+
 import React from "react";
 import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -6,6 +7,7 @@ import {ScrollView, TextInput, TouchableOpacity,FlatList, TouchableHighlight} fr
 import categories from "../../data/categories"
 import clothes from "../../data/clothes"
 import {useCardAnimation} from "@react-navigation/stack";
+
 
 const {width}= Dimensions.get("screen"); //da bi dobila sirinu ekrana
 const cardWidth= width/2-20; //na pola ekrana sa razmakom 20 piks
@@ -99,7 +101,6 @@ const HomeScreen= ({navigation})=>{
     };
 
     return (
-
         <SafeAreaView style={{flex:1,backgroundColor: COLORS.white}}>
             <View style={style.header}>
                 <View>

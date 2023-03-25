@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 
-function ImagePickerExample() {
+function ImagePickerExample(props:{onChangeHandler:(arg0:string)=>void}) {
     // The path of the picked image
     //@ts-ignore
     const [pickedImagePath, setPickedImagePath] = useState('');
@@ -27,24 +27,16 @@ function ImagePickerExample() {
         if (!result.canceled) {
             // @ts-ignore
             setPickedImagePath(result.assets[0].uri);
-            console.log(result.assets[0].uri);
+            props.onChangeHandler(result.assets[0].uri);
+            console.log(result.assets[0]);
         }
     }
 
-    const [imageArray, setImageArray] = useState([]);
+    const [imageArray,setImageArray] = useState([]);
     return (
         <View style={styles.screen}>
             <View style={styles.buttonContainer}>
                 <Button onPress={showImagePicker} title="Select an image"/>
-            </View>
-
-            <View style={styles.imageContainer}>
-                {
-                    pickedImagePath !== '' && <Image
-                        source={{uri: pickedImagePath}}
-                        style={styles.image}
-                    />
-                }
             </View>
         </View>
     );
@@ -56,12 +48,10 @@ export default ImagePickerExample
 // Just some styles
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginBottom:10,
     },
     buttonContainer: {
-        width: 400,
+        width: 200,
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
