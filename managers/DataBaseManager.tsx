@@ -3,7 +3,9 @@
 
 import {auth,db} from "../firebaseConfig";
 import {user} from "./AuthManager";
-import { collection, addDoc,doc ,getDoc} from "firebase/firestore";
+import { collection, addDoc,doc,deleteDoc ,getDocs} from "firebase/firestore";
+import {Animated} from "react-native";
+import add = Animated.add;
 
 class DataBaseManager{
     static async addInDatabase(path: string, desc: string, amount: string) {
@@ -24,12 +26,28 @@ class DataBaseManager{
 
     }
 
-    static async readFromDatabase(){
+    static async readFromDatabase(adder:()=>void){
         // @ts-ignore
+        adder([])
         const querySnapshot = await getDocs(collection(db, user.email));
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+
+            // @ts-ignore
+            adder(prevstate=>{
+                 return [...prevstate,{ imagePath:doc.data().image,productAmount:doc.data().amount,description: doc.data().description}]
+            })
+        });
+    }
+
+    static async deleteFromData(amount:string){
+        const querySnapshot = await getDocs(collection(db, user.email));
+        querySnapshot.forEach((doc) => {
+            // @ts-ignore
+            if(doc.data().amount==amount){
+                deleteDoc(doc.ref)
+            }
+            // doc.data() is never undefined for query doc snapshots
         });
     }
 }

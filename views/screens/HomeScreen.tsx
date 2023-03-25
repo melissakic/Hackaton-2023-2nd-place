@@ -1,6 +1,6 @@
 
 import React from "react";
-import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
 import {ScrollView, TextInput, TouchableOpacity,FlatList, TouchableHighlight} from "react-native-gesture-handler";
@@ -148,10 +148,11 @@ const HomeScreen= ({navigation})=>{
                         What do you want today
                     </Text>
                 </View>
-                <Image
-                    source={require("../../assets/user.png")}
-                    style={{height:50,width:50, borderRadius:25}}
-                />
+                <View style={{alignSelf:"center"}}>
+                    <Button title={"Log out"} onPress={()=>{
+                    navigation.goBack()}
+                    }></Button>
+                </View>
             </View>
 
             <View style={{marginTop:40,

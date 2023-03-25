@@ -28,16 +28,16 @@ const BottomNavigator =()=>{
                 tabBarActiveTintColor : COLORS.primary, //da se aktivira boja na aktivnom
             }}>
 
-            <Tab.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{
-                    tabBarIcon:({color})=>(
-                        <Icon name="home-filled" color={color} size={28}/>   //uzima f-iju
-                        //ovo nam daje homesccren  plavi donji
+            {/*<Tab.Screen*/}
+            {/*    name="HomeScreen"*/}
+            {/*    component={HomeScreen}*/}
+            {/*    options={{*/}
+            {/*        tabBarIcon:({color})=>(*/}
+            {/*            <Icon name="home-filled" color={color} size={28}/>   //uzima f-iju*/}
+            {/*            //ovo nam daje homesccren  plavi donji*/}
 
-                    )
-                }}/>
+            {/*        )*/}
+            {/*    }}/>*/}
 
 
             <Tab.Screen
@@ -78,7 +78,7 @@ const BottomNavigator =()=>{
                 component={UserScreen}
                 options={{
                     tabBarIcon:({color})=>(
-                        <Icon name="favorite" color={color} size={28}/>
+                        <Icon name="add" color={color} size={28}/>
                     )
                 }}/>
 

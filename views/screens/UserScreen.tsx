@@ -2,11 +2,12 @@ import {Alert, Button, Image, Pressable, StyleSheet, Text, TextInput, View} from
 import firebase from "firebase/compat";
 import {auth} from "../../firebaseConfig";
 import Colors from "../../colors/Colors";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {DataBaseManager} from "../../managers/DataBaseManager";
 import {ScrollView, TouchableHighlight} from "react-native-gesture-handler";
 import ImagePicker from "../../ImagePicker";
 import * as path from "path";
+import {user} from "../../managers/AuthManager";
 
 
 function UserScreen(){
@@ -14,6 +15,14 @@ function UserScreen(){
     const [amount,setAmount]=useState('')
     const [products,setProducts]=useState([])
     const [image,setImage]=useState('')
+    const [clickedAmount,setClickedAmount]=useState('')
+    const test=1;
+
+   function loadProducts(){
+       setProducts([])
+       // @ts-ignore
+       DataBaseManager.readFromDatabase(setProducts)
+   }
 
     function descHandler(text:string){
         setDesc(text)
@@ -25,21 +34,20 @@ function UserScreen(){
     }
 
     function addHandler(){
-        // @ts-ignore
+       //@ts-ignore
         setProducts(prevState => {
             let test=image;
-            return [...prevState,{ imagePath:test,productAmount:amount,description: "Test"}]
+            return [...prevState,{imagePath:test,productAmount:amount,description: "Test"}]
         })
       DataBaseManager.addInDatabase(image,desc,amount)
     }
 
     function updateImageHandler(path:string){
-        console.log("Evo")
-        console.log(path)
         setImage(path)
     }
 
-    function deleteHandler(){
+    function deleteHandler(amount:string){
+        DataBaseManager.deleteFromData(amount)
 
     }
 
@@ -54,10 +62,13 @@ function UserScreen(){
         <View style={{alignSelf:"center"}}>
             <ImagePicker onChangeHandler={updateImageHandler}></ImagePicker>
         </View>
+        <View style={{marginBottom:10}}>
+            <Button title={"Reload products"} onPress={loadProducts}></Button>
+        </View>
         <View style={styles.buttonCustom}>
             <Button title={"Add"} onPress={addHandler}></Button>
         </View>
-        <ScrollView style={{alignSelf:"center",marginTop:20,height:"60%"}}>
+        <ScrollView style={{alignSelf:"center",marginTop:20,height:"50%"}}>
             {products.map(data=>{
                 return <View style={styles.cardUser}>
                     <Text>{`$${data.productAmount}`}</Text>
@@ -65,7 +76,7 @@ function UserScreen(){
                     {image==""?<Image source={{uri:"file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FwebShop-a4261b57-859e-42a5-9171-825d29213769/ImagePicker/aa" +
                             "1f1283-0215-4684-948a-31bd85bc5be7.jpeg"}} style={{width:200,height:200}}></Image>:<Image source={{uri:image}} style={{width:200,height:200}}></Image>}
                     <View style={{marginVertical:10}}>
-                        <Button title={"Delete"} onPress={deleteHandler}></Button>
+                        <Button title={"Delete"} onPress={deleteHandler.bind(amount,data.productAmount)}></Button>
                     </View>
                     <Button title={"Edit"} onPress={editHandler}></Button>
                 </View>
