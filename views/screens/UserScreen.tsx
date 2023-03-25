@@ -96,11 +96,11 @@ function UserScreen(navigation){
         <View style={{alignSelf:"center"}}>
             <ImagePicker onChangeHandler={updateImageHandler}></ImagePicker>
         </View>
-        <View style={{marginBottom:10}}>
-            <Button title={"Reload products"} onPress={loadProducts}></Button>
+        <View style={{marginBottom:10, width:165,alignSelf:"center"}}>
+            <Button color={COLORS.primary} title={"Reload products"} onPress={loadProducts}></Button>
         </View>
         <View style={styles.buttonCustom}>
-            <Button title={"Add"} onPress={addHandler}></Button>
+            <Button color={COLORS.primary} title={"Add"} onPress={addHandler}></Button>
         </View>
         <ScrollView style={{alignSelf:"center",marginTop:20,height:"50%"}}>
             {products.map(data=>{
@@ -110,13 +110,13 @@ function UserScreen(navigation){
                     {image==""?<Image source={{uri:"file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FwebShop-a4261b57-859e-42a5-9171-825d29213769/ImagePicker/aa" +
                             "1f1283-0215-4684-948a-31bd85bc5be7.jpeg"}} style={{width:200,height:200}}></Image>:<Image source={{uri:image}} style={{width:200,height:200}}></Image>}
                     <View style={{marginVertical:10}}>
-                        <Button title={"Delete"} onPress={deleteHandler.bind(amount,data.productAmount)}></Button>
+                        <Button color={COLORS.primary} title={"Delete"} onPress={deleteHandler.bind(amount,data.productAmount)}></Button>
                     </View>
-                    <Button title={"Edit"} onPress={handleModal}/>
+                    <Button color={COLORS.primary} title={"Edit"} onPress={handleModal}/>
                     <Modal isVisible={isModalVisible}  backdropColor={COLORS.white}
                            backdropOpacity= {1} >
                         <View style={{ flex: 1 }}>
-                            <Button title="Hide modal" onPress={handleModalClose.bind(amount,data.productAmount)}/>
+                            <Button color={COLORS.primary} title="Hide modal" onPress={handleModalClose.bind(amount,data.productAmount)}/>
                         </View>
                         <View style={styles.modal}>
                             <Text style={styles.text}>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         width: "100%",
-        height: "70%",
+        height: "84%",
         alignItems: "center",
     },
     text: {
