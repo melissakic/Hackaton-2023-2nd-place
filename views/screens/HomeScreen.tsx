@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState} from "react";
 import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../data/colors';
@@ -15,6 +15,8 @@ const cardWidth= width/2-20; //na pola ekrana sa razmakom 20 piks
 
 
 const HomeScreen= ({navigation})=>{
+
+    const[searchTerm,setSearchTerm]=useState("");
 
 //da bi pratili koja je kategorija selektovana
     const [selectCategoryIndex,setSelectedCategoryIndex]= React.useState(0); //defaultni index=0

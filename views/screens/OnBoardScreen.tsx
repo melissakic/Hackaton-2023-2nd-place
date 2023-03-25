@@ -23,13 +23,16 @@ const OnBoardScreen= ({navigation}) =>{
 
             <View style={style.textContainer}>
                 <View >
-                    <Text style={{fontSize:32,fontWeight:"bold", paddingTop:30 ,textAlign:'center' }}>
+                    <Text style={{fontSize:32,fontWeight:"bold", paddingTop:30 ,textAlign:'center',fontStyle:"italic" }}>
                         {"<MIteam/> shop"}
                     </Text>
                     <Text style={{marginTop:20,
+                        marginBottom:20,
                         fontSize:18,
                         textAlign:'center', color: COLORS.grey}}>
-                        We help you to find best and delicious CLOTHES</Text>
+                       Find best outlet items
+                        {"\n"}
+                        Shop what you love—faster and easier</Text>
                 </View>
 
 
@@ -55,7 +58,7 @@ const style = StyleSheet.create({
         flex:1,
         paddingHorizontal:50, //koliko usko ce biti tekst(sirina)
         justifyContent:"space-between",
-        paddingBottom: 130,
+        paddingBottom: 100,
         marginTop:20
     },
     indicatorContainer:{

@@ -1,5 +1,5 @@
 import {Image, StyleSheet, View} from "react-native";
-import Colors from "../../colors/Colors";
+import COLORS from "../../data/colors";
 import React from "react";
 
 //@ts-ignore
@@ -13,9 +13,12 @@ export default LoginImage;
 
 const styles = StyleSheet.create({
     image: {
-        tintColor: Colors.PURPUR,
-        width: 150,
-        height: 150,
-        marginBottom: 70
+        width: 155,
+        height: 155,
+        marginBottom: 70,
+        borderRadius: 20,
+        backgroundColor: COLORS.secondary,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
