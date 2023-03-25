@@ -1,5 +1,5 @@
 import {Alert, StyleSheet, TextInput, View} from "react-native";
-import Colors from "../../colors/Colors";
+import COLORS from  "../../data/colors";
 
 
 function validateEmail(email: string) {
@@ -34,7 +34,7 @@ export default function InputField(props) {
 const styles = StyleSheet.create({
     input: {
         margin: 10,
-        backgroundColor: Colors.PURPUR,
+        backgroundColor: COLORS.secondary,
         borderRadius: 40,
         alignSelf: "stretch",
         marginHorizontal: 20,
@@ -48,17 +48,17 @@ const styles = StyleSheet.create({
     input_invalid: {
         margin: 10,
         borderRadius: 40,
-        backgroundColor: Colors.WARNING_RED,
+        backgroundColor: COLORS.secondary,
         alignSelf: "stretch",
         marginHorizontal: 20,
         height: 60,
-        borderColor: "red",
+        borderColor: COLORS.grey,
         borderStyle: "solid",
         borderWidth: 3,
         shadowColor: '#171717',
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
-        elevation: 8,
+        elevation: 15,
     }
 });

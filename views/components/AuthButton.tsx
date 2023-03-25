@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import Colors from "../../colors/Colors";
+import COLORS from  "../../data/colors";
 
 //@ts-ignore
 export default function AuthButton(props) {
@@ -13,11 +13,12 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 60,
         //btn color
-        backgroundColor: Colors.PURPUR,
+        backgroundColor: COLORS.primary,
         width: 250,
         height: 50,
         borderStyle: "solid",
-        borderColor: Colors.PURPUR,
+        borderColor: COLORS.dark,
+        elevation: 5,
         borderWidth: 2,
         borderRadius: 20,
     },

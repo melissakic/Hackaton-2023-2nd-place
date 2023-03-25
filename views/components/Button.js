@@ -15,13 +15,26 @@ const FirstButton =({title,onPress=()=>{}})=>{
         </TouchableOpacity>
     );
 };
+const SecondButton =({title,onPress=()=>{}})=>{
+
+    //ovo {onPress} je uzeta funkcija koju si proslijedila gore
+    return (
+        <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+            <View style={{...style.btnContainer,
+                backgroundColor:COLORS.white}}>
+                <Text style={{...style.title,color:COLORS.primary} }> {title}</Text>
+
+            </View>
+
+        </TouchableOpacity>
+    );
+};
 
 
 const style=StyleSheet.create({
 
     //izgled dugmeta
     btnContainer: {
-        elevation:6,
         backgroundColor: COLORS.primary,
         height:60,
         borderRadius: 30,
@@ -35,4 +48,4 @@ const style=StyleSheet.create({
     }
 });
 
-export {FirstButton};
+export {FirstButton, SecondButton};

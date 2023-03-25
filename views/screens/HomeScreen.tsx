@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import {SafeAreaView, StyleSheet, Text, View, Image, Touchable, Dimensions, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -9,12 +10,18 @@ import clothes from "../../data/clothes"
 import {auth} from "../../firebaseConfig";
 
 
+
 const {width}= Dimensions.get("screen"); //da bi dobila sirinu ekrana
 const cardWidth= width/2-20; //na pola ekrana sa razmakom 20 piks
 
 
+function ReactNativeFlatListInMemorySearch(props: { input: string, data: ({ image: any; price: string; name: string; ingredients: string; id: string } | { image: any; price: string; name: string; ingredients: string; id: string } | { image: any; price: string; name: string; ingredients: string; id: string } | { image: any; price: string; name: string; ingredients: string; id: string } | { image: any; price: string; name: string; ingredients: string; id: string } | { image: any; price: string; name: string; ingredients: string; id: string })[], setInput: (value: (((prevState: string) => string) | string)) => void }) {
+    return null;
+}
 
 const HomeScreen= ({navigation})=>{
+
+
 
 //da bi pratili koja je kategorija selektovana
     const [selectCategoryIndex,setSelectedCategoryIndex]= React.useState(0); //defaultni index=0
@@ -133,6 +140,9 @@ const HomeScreen= ({navigation})=>{
         );
     };
 
+    //kako bi preuzeli sta korisnik unosi u search bar
+    const [input,setInput]= useState("");
+
     return (
         <SafeAreaView style={{flex:1,backgroundColor: COLORS.white}}>
             <View style={style.header}>
@@ -155,22 +165,44 @@ const HomeScreen= ({navigation})=>{
                 </View>
             </View>
 
+
             <View style={{marginTop:40,
                 flexDirection: 'row',
                 paddingHorizontal:20}}>
                 <View style={style.inputContainer}>
                     <Icon name="search" size={28}/>
-                    <TextInput style={{flex:1, fontSize:18}}
+                    <TextInput value={input} onChangeText={(text) =>setInput(text)}
+                               style={{flex:1, fontSize:18}}
                                placeholder="Search for food"
                     />
+
+
                 </View>
+
+
+
+
                 <View style={style.sortBtn}>
                     <Icon name="tune" size={28} color={COLORS.white} />
+
+
                 </View>
+
+
+
             </View>
+
+
+
+
             <View>
                 <ListCategories />
+
+
+
             </View>
+
+
 
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -178,6 +210,9 @@ const HomeScreen= ({navigation})=>{
                 data={products} //i importujes food iz data
                 renderItem={({item})=><Card clothes={item}/>} //food je ono sto si gore proslijedila u card
             />
+
+
+
 
         </SafeAreaView>
     );
