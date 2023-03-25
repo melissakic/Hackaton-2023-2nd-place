@@ -6,10 +6,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from "react-native-gesture-handler";
 import {SecondButton} from "../components/Button";
 import {DataBaseManager} from "../../managers/DataBaseManager";
+import clothes from "../../data/clothes";
+import ReviewForm from "../components/ReviewForm";
 
 const DetailsScreen= ({navigation,route}) =>{
     //ovo cuva detalje iz "proslosti" zapamceno iz homescreena
     const item= route.params;
+
+
 
     return (
 
@@ -43,15 +47,15 @@ const DetailsScreen= ({navigation,route}) =>{
                             <Icon name="favorite-border" color={COLORS.primary} size={25} />
                         </View>
                     </View>
+
+
                     <Text style={style.detailsText}>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text
-                        ever since the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book. It has survived not
-                        only five centuries.
+                        {item.description}
                     </Text>
+                    <ReviewForm onReviewSubmit={()=>{}}/>
+
                     <View style={{marginTop: 40, marginBottom: 40}}>
-                        <SecondButton title="Add To Cart" onPress={()=>{
+                        <SecondButton  title="Add To Cart" onPress={()=>{
                              DataBaseManager.addInDatabaseCart(item.name,item.price)
                         }
                         }/>
@@ -61,6 +65,8 @@ const DetailsScreen= ({navigation,route}) =>{
         </SafeAreaView>
     );
 };
+
+
 
 const style= StyleSheet.create({
     header: {

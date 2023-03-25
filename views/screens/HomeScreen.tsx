@@ -29,51 +29,99 @@ const HomeScreen= ({navigation})=>{
         {
             category:"up",
             id: '1',
-            name: 'Ženska košulja',
-            ingredients: 'Mixed Pizza',
+            name: 'Women shirt',
+            ingredients: 'Second hand',
             price: '8.30',
             image: require('../../assets/kosulja.png'),
+            description: "Style: T-Shirt\n" +
+            "Material: Cotton\n" +
+                    "Colour: Cream\n" +
+                "Neckline: Round Neck\n" +
+                "Sleeve Length: Short Sleeve\n" +
+                "Condition: Good"
         },
         {
             category:"up",
             id: '2',
-            name: 'Ženska jakna',
-            ingredients: 'Cheese Pizza',
+            name: 'Women jacket',
+            ingredients: 'New',
             price: '7.10',
             image: require('../../assets/jakna.png'),
+            description: "Categories: Women\n" +
+                "Category: Clothing\n" +
+                "Sub-category: Jackets\n" +
+                "Designer: Fusalp\n" +
+                "Condition: Never worn, with tagMore info\n" +
+                "Material: Polyester\n" +
+                "Color: White\n" +
+                "Size: L InternationalSizing guide"
         },
         {
             category:"down",
             id: '3',
-            name: 'Patike',
-            ingredients: 'Fried Chicken',
-            price: '5.10',
+            name: 'Shoes',
+            ingredients: 'New',
+            price: '60',
             image: require('../../assets/patike.png'),
+            description: "Categories :Women\n" +
+                "Category:Shoes\n" +
+                "Sub-category:Trainers\n" +
+                "Designer:Alexander McQueen\n" +
+                "Model:Oversize\n" +
+                "Condition:Never wornMore info\n" +
+                "Material:Leather\n" +
+                "Color:White\n" +
+                "Size:37.5 EUSizing guide"
         },
         {
             category:"down",
             id: '4',
-            name: 'Muške hlače',
-            ingredients: 'Salmon Meat',
+            name: 'Sport T-shirt',
+            ingredients: 'Novo',
             price: '9.55',
-            image: require('../../assets/hlace.png'),
+            image: require('../../assets/majica2.png'),
+            description: "Categories :Men\n" +
+                "Category:Clothing\n" +
+                "Sub-category:T-shirts\n" +
+                "Designer:Nike\n" +
+                "Condition:Never worn, with tagMore info\n" +
+                "Material:Polyester\n" +
+                "Color:Burgundy\n" +
+                "Size:XL InternationalSizing guide"
         },
         {
 
             id: '5',
             category:"up",
-            name: 'Muške hlače',
-            ingredients: 'Salmon Meat',
-            price: '9.55',
+            name: 'Man jeans',
+            ingredients: 'New',
+            price: '25',
             image: require('../../assets/hlace.png'),
+            description: "Categories :Men\n" +
+                "Category:Clothing\n" +
+                "Sub-category:Jeans\n" +
+                "Designer:Tommy Jeans\n" +
+                "Condition:Good conditionMore info\n" +
+                "Material:Cotton - elasthane\n" +
+                "Color:Blue\n" +
+                "Size:34 USSizing guide"
         },
 
         {
             id: '6',
             name: 'Shoes',
-            ingredients: 'Salmon Meat',
-            price: '9.55',
+            ingredients: 'Second hand',
+            price: '50',
             image: require('../../assets/patike2.png'),
+            description: "Categories :Men\n" +
+                "Category:Shoes\n" +
+                "Sub-category:Trainers\n" +
+                "Designer:New Balance\n" +
+                "Model:990\n" +
+                "Condition:Never wornMore info\n" +
+                "Material:Cloth\n" +
+                "Color:Green\n" +
+                "Size:9.5 USSizing guide"
         },
     ]);
 
@@ -135,6 +183,7 @@ const HomeScreen= ({navigation})=>{
                         <Text style={{fontSize:18, fontWeight:'bold'}}>
                             {clothes.name}
                         </Text>
+
                         <Text style={{fontSize:14, color:COLORS.grey, marginTop:2}}>
                             {clothes.ingredients}
                         </Text>
@@ -176,9 +225,11 @@ const HomeScreen= ({navigation})=>{
                     </Text>
                 </View>
                 <View style={{alignSelf:"center"}}>
-                    <Button title={"Log out"} onPress={()=>{
+
+                    <Button color={COLORS.primary} title={"Log out"} onPress={()=>{
                     navigation.goBack()}
-                    }></Button>
+                    }/>
+
                 </View>
             </View>
 
@@ -301,7 +352,6 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
 });
 
 
