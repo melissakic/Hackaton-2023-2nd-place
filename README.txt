@@ -17,11 +17,20 @@ npm install
 
 it will take all packages that we uesed in package.json.
 
+Core packages used in this project are :
+"@react-navigation" for navigation between screens,
+"firebase" for implementation of authorization and real-time database,
+"react-native-vector-icons" for using material icons in project,
+"expo-image-picker" for using phone storage and picking images from storage,
+"react-native-mail-compose" for sending email feedback to user(not fully implemented because shortage of time),
+
 Executing program
 
 To run a program enter:
 
 npm run android or npm start or npm run
+
+
 
 
 Authors
