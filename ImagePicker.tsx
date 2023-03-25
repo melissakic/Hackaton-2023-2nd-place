@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, Button} from 'react-native';
 
 import * as ImagePicker from 'expo-image-picker';
 import LoginScreen from "./views/screens/LoginScreen";
+import COLORS from "./data/colors";
 
 
 function ImagePickerExample(props:{onChangeHandler:(arg0:string)=>void}) {
@@ -35,7 +36,7 @@ function ImagePickerExample(props:{onChangeHandler:(arg0:string)=>void}) {
     return (
         <View style={styles.screen}>
             <View style={styles.buttonContainer}>
-                <Button onPress={showImagePicker} title="Select an image"/>
+                <Button color={COLORS.primary} onPress={showImagePicker} title="Select an image"/>
             </View>
         </View>
     );
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: 200,
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+
     },
     imageContainer: {
         padding: 30
