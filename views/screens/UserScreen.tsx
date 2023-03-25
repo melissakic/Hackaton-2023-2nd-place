@@ -1,16 +1,21 @@
 import {Alert, Button, Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import firebase from "firebase/compat";
 import {auth} from "../../firebaseConfig";
-import Colors from "../../colors/Colors";
 import React, {useEffect, useState} from "react";
 import {DataBaseManager} from "../../managers/DataBaseManager";
 import {ScrollView, TouchableHighlight} from "react-native-gesture-handler";
 import ImagePicker from "../../ImagePicker";
 import * as path from "path";
 import {user} from "../../managers/AuthManager";
+import Modal from "react-native-modal";
+import COLORS from "../../data/colors";
 
 
-function UserScreen(){
+
+
+
+
+function UserScreen(navigation){
     const [desc,setDesc]=useState('')
     const [amount,setAmount]=useState('')
     const [products,setProducts]=useState([])
@@ -55,6 +60,12 @@ function UserScreen(){
 
     }
 
+
+
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
+
     return <View>
         <Text style={styles.title}>Sell your products, {auth.currentUser?.email}</Text>
         <TextInput placeholder={"Product description"} style={styles.input} onChangeText={descHandler}></TextInput>
@@ -78,7 +89,26 @@ function UserScreen(){
                     <View style={{marginVertical:10}}>
                         <Button title={"Delete"} onPress={deleteHandler.bind(amount,data.productAmount)}></Button>
                     </View>
-                    <Button title={"Edit"} onPress={editHandler}></Button>
+                    <Button title={"Edit"} onPress={handleModal} />
+                    <Modal isVisible={isModalVisible}  backdropColor={COLORS.white}
+                           backdropOpacity= {1} >
+                        <View style={{ flex: 1 }}>
+                            <Button title="Hide modal" onPress={handleModal} />
+                        </View>
+                        <View style={styles.modal}>
+                            <Text style={styles.text}>
+                               Edit your article
+                            </Text>
+                            <View>
+                                <Text style={styles.opis }>Add product description</Text>
+                                <TextInput placeholder={"Product description"} style={styles.input1} onChangeText={descHandler}></TextInput>
+                                <Text style={styles.opis }>Add product price</Text>
+                                <TextInput placeholder={"Product price"} style={styles.input1} onChangeText={amountHandler}></TextInput>
+                            </View>
+                        </View>
+                    </Modal>
+
+
                 </View>
             })}
         </ScrollView>
@@ -101,6 +131,8 @@ const styles = StyleSheet.create({
         fontSize:25,
         alignSelf:"center",
         marginTop:20,
+        fontWeight:"bold",
+
     },
     image:{
         borderStyle:"solid",
@@ -118,7 +150,43 @@ const styles = StyleSheet.create({
         borderWidth:2,
         borderRadius:20,
         borderColor:"black",
-        borderStyle:"solid"
+        borderStyle:"solid",
+        textAlign: "center"
+    },
+    modal: {
+        width: "100%",
+        height: "70%",
+        alignItems: "center",
+    },
+    text: {
+        fontSize: 28,
+        fontWeight: "500",
+        elevation:20,
+        shadowOpacity:50,
+        textAlign: "center",
+        backgroundColor: COLORS.secondary,
+        shadowColor:"COLORS.dark",
+    },
+    opis:{
+        fontSize:20,
+        alignSelf:"center",
+        marginTop:35,
+        width:"40%",
+
+
+    },
+    input1:{
+        fontSize:16,
+        height:75,
+        width:230,
+        marginVertical:20,
+        marginHorizontal:20,
+        alignSelf:"stretch",
+        borderWidth:2,
+        borderRadius:20,
+        borderColor:"black",
+        borderStyle:"solid",
+        textAlign:"center"
     },
 })
 

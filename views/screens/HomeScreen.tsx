@@ -154,7 +154,6 @@ const HomeScreen= ({navigation})=>{
         );
     };
 
-    //kako bi preuzeli sta korisnik unosi u search bar
 
     const [search,setSearch]=useState('')
 
@@ -189,7 +188,11 @@ const HomeScreen= ({navigation})=>{
                 paddingHorizontal:20}}>
                 <View style={style.inputContainer}>
                     <Icon name="search" size={28}/>
+
+
+
                     <TextInput style={{flex:1,fontSize:18}}placeholder={"Search for foood"} onChangeText={searchHandler}></TextInput>
+
                 </View>
 
                 <View style={style.sortBtn}>
