@@ -3,7 +3,7 @@
 
 import {auth,db} from "../firebaseConfig";
 import {user} from "./AuthManager";
-import { collection, addDoc,doc,deleteDoc ,getDocs} from "firebase/firestore";
+import { collection, addDoc,doc,deleteDoc ,getDocs,updateDoc} from "firebase/firestore";
 import {Animated} from "react-native";
 import add = Animated.add;
 
@@ -25,6 +25,14 @@ class DataBaseManager{
         console.log("Document written with ID: ", docRef.id);
 
     }
+
+    //@ts-ingnore
+    static async editDatabase(amount,newamount,description){
+       // @ts-ignore
+        this.deleteFromData(amount)
+        this.addInDatabase("file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FwebShop-a4261b57-859e-42a5-9171-825d29213769/ImagePicker/6c760ca9-f93f-4112-8a7e-af01532d625a.jpeg",description,newamount)
+    }
+
     static async deleteAll(){
         const querySnapshot = await getDocs(collection(db, "cart"));
         querySnapshot.forEach((doc) => {
@@ -70,7 +78,6 @@ class DataBaseManager{
             })
             // @ts-ignore
             adder(prevstate=>{
-
                 return [...prevstate,{amount:doc.data().amount,
                     name:doc.data().name,
                     author:user.email}]

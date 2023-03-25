@@ -83,7 +83,7 @@ const BottomNavigator =()=>{
                 }}/>
 
             <Tab.Screen
-                name="Cart"
+                 name="Cart"
                 component={CartScreen}
                 options={{
                     tabBarIcon:({color})=>(
