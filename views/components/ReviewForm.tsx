@@ -1,35 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import COLORS from "../../data/colors";
 
 const ReviewForm = ({ onReviewSubmit }) => {
-    const [name, setName] = useState('');
-    const [rating, setRating] = useState('');
     const [review, setReview] = useState('');
 
-    const handleSubmit = () => {
-        const newReview = {
-            name: name,
-            rating: rating,
-            review: review,
-        };
-        onReviewSubmit(newReview);
-        setName('');
-        setRating('');
-        setReview('');
-    };
+
+   function handleSubmit(){
+       onReviewSubmit()
+   }
 
     return (
-        <View>
-            <Text>Name:</Text>
-            <TextInput value={name} onChangeText={setName} />
-
-            <Text>Rating:</Text>
-            <TextInput value={rating} onChangeText={setRating} />
-
-            <Text>Review:</Text>
+        <View style={{borderStyle:"solid",borderWidth:2,borderColor:"white",margin:10}}>
+            <Text style={{color:"white"}}>Review:</Text>
             <TextInput value={review} onChangeText={setReview} />
-
-            <Button title="Submit" onPress={handleSubmit} />
+            <Button color={COLORS.secondary} title="Submit" onPress={handleSubmit} />
         </View>
     );
 };
