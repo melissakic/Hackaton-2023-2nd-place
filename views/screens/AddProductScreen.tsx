@@ -11,9 +11,6 @@ function  AddProductScreen({navigation}){
     const [desc,setDesc]=useState('')
     const [amount,setAmount]=useState('')
 
-    function imageHandler(path:string){
-            setImagePath(path)
-    }
 
     function descHandler(text:string){
         setDesc(text)
@@ -25,8 +22,6 @@ function  AddProductScreen({navigation}){
     }
 
     return <View style={styles.centeredView}>
-            <ImagePicker onChangeHandler={imageHandler}></ImagePicker>
-            <Image source={{ uri: imagePath, scale: 1 }} style={styles.image}></Image>
             <TextInput placeholder={"Product description"} style={styles.input} onChangeText={descHandler}></TextInput>
             <TextInput placeholder={"Product price"} style={styles.input} onChangeText={amountHandler}></TextInput>
             <Pressable

@@ -7,6 +7,7 @@ import COLORS from '../../data/colors';
 import {View} from "react-native";
 import CartScreen from '../screens/CartScreen'
 import AddProductScreen from "../screens/AddProductScreen";
+import UserScreen from "../screens/UserScreen";
 
 
 const Tab= createBottomTabNavigator();
@@ -49,32 +50,32 @@ const BottomNavigator =()=>{
                 }}/>
 
 
-            <Tab.Screen
-                //u sredini onaj
-                name="Search"
-                component={AddProductScreen}
-                options={{
-                    tabBarIcon:({color})=>(
-                        <View style={{height:60,
-                            width:60,
-                            justifyContent: "center",
-                            alignItems: 'center',
-                            backgroundColor:COLORS.white,
-                            borderColor:COLORS.primary,
-                            borderWidth:2,
-                            borderRadius:30,
-                            top: -24, //da izdigne
-                            elevation: 5, //sjena
-                        }}>
-                            <Icon name={"add"} color={COLORS.primary} size={28}/>
-                        </View>
+            {/*<Tab.Screen*/}
+            {/*    //u sredini onaj*/}
+            {/*    name="Search"*/}
+            {/*    component={AddProductScreen}*/}
+            {/*    options={{*/}
+            {/*        tabBarIcon:({color})=>(*/}
+            {/*            <View style={{height:60,*/}
+            {/*                width:60,*/}
+            {/*                justifyContent: "center",*/}
+            {/*                alignItems: 'center',*/}
+            {/*                backgroundColor:COLORS.white,*/}
+            {/*                borderColor:COLORS.primary,*/}
+            {/*                borderWidth:2,*/}
+            {/*                borderRadius:30,*/}
+            {/*                top: -24, //da izdigne*/}
+            {/*                elevation: 5, //sjena*/}
+            {/*            }}>*/}
+            {/*                <Icon name={"add"} color={COLORS.primary} size={28}/>*/}
+            {/*            </View>*/}
 
-                    )
-                }}/>
+            {/*        )*/}
+            {/*    }}/>*/}
 
             <Tab.Screen
                 name="Favorite"
-                component={HomeScreen}
+                component={UserScreen}
                 options={{
                     tabBarIcon:({color})=>(
                         <Icon name="favorite" color={color} size={28}/>
