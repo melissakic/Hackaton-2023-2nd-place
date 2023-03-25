@@ -5,6 +5,7 @@ import COLORS from  "../../data/colors";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ScrollView} from "react-native-gesture-handler";
 import {SecondButton} from "../components/Button";
+import {DataBaseManager} from "../../managers/DataBaseManager";
 
 const DetailsScreen= ({navigation,route}) =>{
     //ovo cuva detalje iz "proslosti" zapamceno iz homescreena
@@ -50,7 +51,10 @@ const DetailsScreen= ({navigation,route}) =>{
                         only five centuries.
                     </Text>
                     <View style={{marginTop: 40, marginBottom: 40}}>
-                        <SecondButton title="Add To Cart" />
+                        <SecondButton title="Add To Cart" onPress={()=>{
+                             DataBaseManager.addInDatabaseCart(item.name,item.price)
+                        }
+                        }/>
                     </View>
                 </View>
             </ScrollView>
